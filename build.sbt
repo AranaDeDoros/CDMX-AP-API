@@ -1,3 +1,4 @@
+
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "3.3.3"
@@ -13,6 +14,13 @@ val TapirVersion = "1.10.10"
 lazy val root = (project in file("."))
   .settings(
     name := "wifi-cdmx-ap",
+    assembly / mainClass := Some("com.wifi.cdmx.main.Main"),
+    assembly / assemblyMergeStrategy := {
+      case PathList("META-INF", "resources", _*) => MergeStrategy.first
+      case PathList("META-INF", "services", _*)  => MergeStrategy.concat
+      case PathList("META-INF", "MANIFEST.MF")   => MergeStrategy.discard
+      case _                                     => MergeStrategy.first
+    },
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-effect" % CatsEffectVersion,
       
