@@ -22,7 +22,7 @@ class WiFiPointRoutes[F[_]: Async](service: WiFiPointService[F]) {
     .in(query[Option[Int]]("limit"))
     .in(query[Option[Int]]("offset"))
     .out(jsonBody[PaginatedResponse[WiFiPoint]])
-    .summary("Get a paginated list of Access POints and the total")
+    .summary("Get a paginated list of Access Points and the number of them")
 
   val getByIdEndpoint = baseEndpoint
     .get
